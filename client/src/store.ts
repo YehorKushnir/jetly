@@ -1,6 +1,7 @@
 import {create} from 'zustand/react'
 import {AuthService} from './services/AuthService.ts'
 import type {LoginData, RegistrationData, User} from './types/User.ts'
+import type {Ticket} from '@/types/Ticket.ts'
 
 type State = {
     user: User | null
@@ -9,6 +10,10 @@ type State = {
     register: (data: RegistrationData) => Promise<void>
     logout: () => Promise<void>
     refresh: () => Promise<void>
+    tickets: Ticket[]
+    setTickets: (tickets: Ticket[]) => void
+    country: string
+    setCountry: (country: string) => void
 }
 
 export const useStore = create<State>((set, _get) => ({
@@ -36,5 +41,9 @@ export const useStore = create<State>((set, _get) => ({
             set({user: user})
         }
         set({loading: false})
-    }
+    },
+    tickets: [],
+    setTickets: (tickets) => set({tickets}),
+    country: '',
+    setCountry: (country) => set({country})
 }))

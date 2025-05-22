@@ -27,32 +27,34 @@ function App() {
     }, [])
 
     return (
-        <>
+        <div className={'flex flex-col h-dvh'}>
             {isNavbarVisible && (
                 <Navbar1 menu={user?.role === "admin" ? menu : menu.filter(item => !onlyAdminPages.includes(item.url))} />
             )}
-            <Routes>
-                {publicRoutes.map(({path, element, redirectIfAuth}) => (
-                    <Route key={path} path={path} element={
-                        <PublicRoute isAuthenticated={!!user} redirectIfAuth={redirectIfAuth}>
-                            {element}
-                        </PublicRoute>
-                    }/>
-                ))}
-
-                {user && protectedRoutes.map(({path, element, admin}) => (
-                    <Route
-                        key={path}
-                        path={path}
-                        element={
-                            <ProtectedRoute isAuthenticated={!!user} admin={!!admin}>
+            <div className="flex-1 overflow-y-auto">
+                <Routes>
+                    {publicRoutes.map(({path, element, redirectIfAuth}) => (
+                        <Route key={path} path={path} element={
+                            <PublicRoute isAuthenticated={!!user} redirectIfAuth={redirectIfAuth}>
                                 {element}
-                            </ProtectedRoute>
-                        }
-                    />
-                ))}
-            </Routes>
-        </>
+                            </PublicRoute>
+                        }/>
+                    ))}
+
+                    {user && protectedRoutes.map(({path, element, admin}) => (
+                        <Route
+                            key={path}
+                            path={path}
+                            element={
+                                <ProtectedRoute isAuthenticated={!!user} admin={!!admin}>
+                                    {element}
+                                </ProtectedRoute>
+                            }
+                        />
+                    ))}
+                </Routes>
+            </div>
+        </div>
     )
 }
 

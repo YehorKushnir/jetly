@@ -51,9 +51,9 @@ const Navbar1 = (
     {
         logo = {
             url: "/",
-            src: "https://cdn-icons-png.flaticon.com/512/6456/6456651.png",
-            alt: "Shoe",
-            title: "Shoes Shop",
+            src: "https://cdn-icons-png.flaticon.com/512/9716/9716740.png",
+            alt: "Plane",
+            title: "Jetly",
         },
         menu = [],
     }: Navbar1Props) => {
